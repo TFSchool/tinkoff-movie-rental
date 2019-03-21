@@ -1,0 +1,21 @@
+{
+  "name": "tinkoff-prokat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write --config .prettierrc.js index.html src/**/*.{js,css}",
+    "prettier-watch": "onchange '**/*.js' -- prettier --write --config .prettierrc.js {{changed}}",
+    "start": "node server"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "onchange": "^5.2.0",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Тинькофф Прокат</title>
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="src/styles/layout.css" />
+    <link rel="stylesheet" href="src/styles/search.css" />
+    <link rel="stylesheet" href="src/styles/results.css" />
+    <link rel="stylesheet" href="src/styles/movie.css" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <img class="header__logo" src="src/images/logo.svg" alt="logo" />
+    </header>
+    <main class="search">
+      <form class="search__form">
+        <input
+          class="search__input"
+          type="search"
+          name="search"
+          placeholder="Поиск фильмов по жанрам и актерам"
+          autocomplete="off"
+        />
+        <div class="search__tags">
+          <span class="search__tag">Как я встретил мамку</span>
+          <span class="search__tag">Как мамку</span>
+          <span class="search__tag">мамку</span>
+          <span class="search__tag">Как я встретил мамку</span>
+          <span class="search__tag">Как мамку</span>
+          <span class="search__tag">мамку</span>
+          <span class="search__tag">Как я встретил мамку</span>
+          <span class="search__tag">Как мамку</span>
+          <span class="search__tag">мамку</span>
+        </div>
+      </form>
+      <div class="results">
+        <div class="results__heading">Нашли 5 фильмов</div>
+
+        <div class="results__grid search__films_live">
+          <article class="movie">
+            <a href="" class="movie__link">
+              <img
+                class="movie-image"
+                src="src/images/poster.png"
+                alt="poster"
+              />
+              <div class="movie-description">
+                <div class="movie-rating">👍 8,9</div>
+                <h3 class="movie-title">Форрест Гамп</h3>
+                <footer class="movie-footer">
+                  <div class="movie-genre">Драма</div>
+                  <div class="movie-year">1994</div>
+                </footer>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__heading">© 2019 Тинькофф Прокат</div>
+    </footer>
+  </body>
+</html>
