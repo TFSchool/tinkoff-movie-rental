@@ -1,18 +1,17 @@
 import { mapMovie } from './helpers/mapMovie.js';
 
+// Components
+import './components/currentYear.js';
+import './components/movieCard.js';
+
 const movieTemplate = document.querySelector('#movie');
 
 const render = (movieData) => {
-  // Клонируем шаблон
-  const movie = movieTemplate.content.cloneNode(true);
+  // Используем компонент
+  const movie = document.createElement('movie-card');
 
-  // Находим нужные элементы
-  const link = movie.querySelector('.movie-link');
-  const title = movie.querySelector('.movie-title');
-  const poster = movie.querySelector('.movie-poster');
-  const year = movie.querySelector('.movie-year');
-  const genre = movie.querySelector('.movie-genre');
-  const rating = movie.querySelector('.movie-rating');
+  // Добавим данные
+  movie.moviePoster = movieData.poster;
 
   return movie;
 };
