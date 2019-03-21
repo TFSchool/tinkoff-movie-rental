@@ -1,12 +1,18 @@
 import { mapMovie } from './helpers/mapMovie.js';
 
-const render = (movieData) => {
-  // Создаем контейнер
-  const movie = document.createElement('article');
-  movie.classList.add('movie');
+const movieTemplate = document.querySelector('#movie');
 
-  // Добавляем innerHTML
-  movie.innerHTML = ``;
+const render = (movieData) => {
+  // Клонируем шаблон
+  const movie = movieTemplate.content.cloneNode(true);
+
+  // Находим нужные элементы
+  const link = movie.querySelector('.movie-link');
+  const title = movie.querySelector('.movie-title');
+  const poster = movie.querySelector('.movie-poster');
+  const year = movie.querySelector('.movie-year');
+  const genre = movie.querySelector('.movie-genre');
+  const rating = movie.querySelector('.movie-rating');
 
   return movie;
 };
