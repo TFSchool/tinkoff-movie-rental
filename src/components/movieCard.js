@@ -1,7 +1,7 @@
 const movieTemplate = document.createElement('template');
 movieTemplate.innerHTML = `
   <article class="movie">
-    <a href="" class="movie__link">
+    <a href="" class="movie-link">
       <img class="movie-image" src="" alt="poster" />
       <div class="movie-description">
         <div class="movie-rating"></div>
@@ -15,6 +15,20 @@ movieTemplate.innerHTML = `
   </article>
 `;
 
+const params = ['title', 'poster', 'link', 'year', 'genre', 'rating'];
+const mirror = (params, element) => {
+  params.forEach((param) => {
+    Object.defineProperty(element, param, {
+      get() {
+        return this.getAttribute(param);
+      },
+      set(value) {
+        this.setAttribute(param, value);
+      },
+    });
+  });
+};
+
 class MovieCard extends HTMLElement {
   constructor() {
     super();
@@ -23,60 +37,41 @@ class MovieCard extends HTMLElement {
     const template = movieTemplate.content.cloneNode(true);
 
     shadow.appendChild(template);
+    mirror(params, this);
   }
 
-  get movieTitle() {
-    return this.getAttribute('title');
+  static get observedAttributes() {
+    return params;
   }
 
-  get moviePoster() {
-    return this.getAttribute('poster');
-  }
+  attributeChangedCallback(param, oldValue, newValue) {
+    switch (param) {
+      case 'title':
+        return (this.shadowRoot.querySelector(
+          '.movie-title'
+        ).textContent = newValue);
 
-  get movieLink() {
-    return this.getAttribute('link');
-  }
+      case 'poster':
+        return (this.shadowRoot.querySelector('.movie-image').src = newValue);
 
-  get movieYear() {
-    return this.getAttribute('year');
-  }
+      case 'link':
+        return (this.shadowRoot.querySelector('.movie-link').href = newValue);
 
-  get movieGenre() {
-    return this.getAttribute('genre');
-  }
+      case 'year':
+        return (this.shadowRoot.querySelector(
+          '.movie-year'
+        ).textContent = newValue);
 
-  get movieRating() {
-    return this.getAttribute('rating');
-  }
+      case 'rating':
+        return (this.shadowRoot.querySelector(
+          '.movie-rating'
+        ).textContent = newValue);
 
-  set movieTitle(value) {
-    this.setAttribute('title', value);
-    this.shadowRoot.querySelector('.movie-title').textContent = value;
-  }
-
-  set moviePoster(value) {
-    this.setAttribute('poster', value);
-    this.shadowRoot.querySelector('.movie-image').src = value;
-  }
-
-  set movieLink(value) {
-    this.setAttribute('link', value);
-    this.shadowRoot.querySelector('.movie-link').href = value;
-  }
-
-  set movieYear(value) {
-    this.setAttribute('year', value);
-    this.shadowRoot.querySelector('.movie-year').textContent = value;
-  }
-
-  set movieGenre(value) {
-    this.setAttribute('genre', value);
-    this.shadowRoot.querySelector('.movie-genre').textContent = value;
-  }
-
-  set movieRating(value) {
-    this.setAttribute('rating', value);
-    this.shadowRoot.querySelector('.movie-rating').textContent = value;
+      case 'genre':
+        return (this.shadowRoot.querySelector(
+          '.movie-genre'
+        ).textContent = newValue);
+    }
   }
 }
 

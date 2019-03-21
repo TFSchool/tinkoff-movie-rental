@@ -11,7 +11,7 @@ const render = (movieData) => {
   const movie = document.createElement('movie-card');
 
   // Добавим данные
-  movie.moviePoster = movieData.poster;
+  movie.poster = movieData.poster;
 
   return movie;
 };
