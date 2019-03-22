@@ -11,21 +11,11 @@ export const createViewModel = (model) => {
       return (
         errorListener && errorListener('Случилась ошибка. Проверьте консоль.')
       );
-    } else {
-      errorListener && errorListener('');
     }
 
-    if (nextState.results !== state.results) {
-      resultsListener && resultsListener(nextState.results);
-    }
-
-    if (nextState.count !== state.count) {
-      countListener && countListener(nextState.count);
-    }
-
-    if (nextState.searches !== state.searches) {
-      searchesListener && searchesListener(nextState.searches);
-    }
+    resultsListener && resultsListener(nextState.results);
+    countListener && countListener(nextState.count);
+    searchesListener && searchesListener(nextState.searches);
 
     state = nextState;
   };
@@ -36,6 +26,8 @@ export const createViewModel = (model) => {
     bindResults: (listener) => (resultsListener = listener),
     bindSearches: (listener) => (searchesListener = listener),
     handleSearchSubmit: (searchTerm) => model.search(searchTerm),
+    handleTagClick: (searchTerm) => model.search(searchTerm),
+    handleTagRemove: (searchTerm) => model.removeTag(searchTerm),
     init: () => {
       update(model.getState());
       model.subscribe(update);

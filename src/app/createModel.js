@@ -41,5 +41,10 @@ export const createModel = () =>
           return { error };
         }
       },
+      removeTag: (currentState, searchTerm) => {
+        return {
+          searches: currentState.searches.filter((term) => term !== searchTerm),
+        };
+      },
     })
   );

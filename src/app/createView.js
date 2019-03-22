@@ -42,6 +42,7 @@ export const createView = () => {
       tag.classList.add('search__tag');
       tag.href = `/?search=${movie}`;
       tag.textContent = movie;
+      tag.dataset.movie = movie;
 
       list.appendChild(tag);
     });
@@ -71,11 +72,39 @@ export const createView = () => {
     return () => searchForm.removeEventListener('submit', listener);
   };
 
+  const onTagClick = (_listener) => {
+    const listener = (event) => {
+      event.preventDefault();
+
+      if (event.target.classList.contains('search__tag') && !event.altKey) {
+        _listener(event.target.dataset.movie);
+      }
+    };
+
+    searchTags.addEventListener('click', listener);
+    return () => searchTags.removeEventListener('click', listener);
+  };
+
+  const onTagRemove = (_listener) => {
+    const listener = (event) => {
+      event.preventDefault();
+
+      if (event.target.classList.contains('search__tag') && event.altKey) {
+        _listener(event.target.dataset.movie);
+      }
+    };
+
+    searchTags.addEventListener('click', listener);
+    return () => searchTags.removeEventListener('click', listener);
+  };
+
   return {
     renderList,
     renderCount,
     renderError,
     renderSearchList,
     onSearchSubmit,
+    onTagClick,
+    onTagRemove,
   };
 };
