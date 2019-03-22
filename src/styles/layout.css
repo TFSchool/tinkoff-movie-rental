@@ -21,7 +21,7 @@ body {
   margin: 80px auto 0;
 }
 
-.movie {
+movie-card {
   width: 302px;
   height: 454px;
 }

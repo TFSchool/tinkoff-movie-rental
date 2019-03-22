@@ -12,6 +12,9 @@ const render = (movieData) => {
 
   // Добавим данные
   movie.poster = movieData.poster;
+  movie.title = movieData.title;
+  movie.year = movieData.year;
+  movie.link = movieData.link;
 
   return movie;
 };
