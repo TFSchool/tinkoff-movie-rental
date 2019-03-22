@@ -21,6 +21,9 @@ export const createModel = () =>
           count: 0,
           results: [],
           error: false,
+          searches: [searchTerm].concat(
+            currentState.searches.filter((term) => term !== searchTerm)
+          ),
         });
 
         try {

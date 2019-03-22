@@ -6,7 +6,6 @@ export const createViewModel = (model) => {
   let searchesListener = null;
 
   const update = (nextState) => {
-    console.log(nextState.searches !== state.searches);
     if (nextState.error) {
       console.error(nextState.error);
       return (
