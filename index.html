@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="src/styles/layout.css" />
     <link rel="stylesheet" href="src/styles/search.css" />
     <link rel="stylesheet" href="src/styles/results.css" />
-    <link rel="stylesheet" href="src/styles/movie.css" />
     <link
       href="http://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
@@ -27,78 +26,20 @@
           placeholder="Поиск фильмов по жанрам и актерам"
           autocomplete="off"
         />
-        <div class="search__tags">
-          <span class="search__tag">Star Wars</span>
-          <span class="search__tag">Interstellar</span>
-          <span class="search__tag">Star Trek</span>
-          <span class="search__tag">Kung Fury</span>
-          <span class="search__tag">Back to the Future</span>
-          <span class="search__tag">Matrix</span>
-          <span class="search__tag">Terminator</span>
-        </div>
+        <div class="search__tags"></div>
       </form>
       <div class="results">
-        <div class="results__heading">Нашли 5 фильмов</div>
+        <div class="results__heading"></div>
 
-        <div class="results__grid search__films_live">
-          <article class="movie">
-            <a href="" class="movie__link">
-              <img
-                class="movie-image"
-                src="src/images/poster.png"
-                alt="poster"
-              />
-              <div class="movie-description">
-                <div class="movie-rating">👍 8,9</div>
-                <h3 class="movie-title">Форрест Гамп</h3>
-                <footer class="movie-footer">
-                  <div class="movie-genre">Драма</div>
-                  <div class="movie-year">1994</div>
-                </footer>
-              </div>
-            </a>
-          </article>
-          <article class="movie">
-            <a href="" class="movie__link">
-              <img
-                class="movie-image"
-                src="https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
-                alt="poster"
-              />
-              <div class="movie-description">
-                <div class="movie-rating">👍 8,9</div>
-                <h3 class="movie-title">Star Wars: Episode IV - A New Hope</h3>
-                <footer class="movie-footer">
-                  <div class="movie-genre">Драма</div>
-                  <div class="movie-year">1994</div>
-                </footer>
-              </div>
-            </a>
-          </article>
-          <article class="movie">
-            <a href="" class="movie__link">
-              <img
-                class="movie-image"
-                src="https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
-                alt="poster"
-              />
-              <div class="movie-description">
-                <div class="movie-rating">👍 8,9</div>
-                <h3 class="movie-title">
-                  Star Wars: Episode V - The Empire Strikes Back
-                </h3>
-                <footer class="movie-footer">
-                  <div class="movie-genre">Драма</div>
-                  <div class="movie-year">1994</div>
-                </footer>
-              </div>
-            </a>
-          </article>
-        </div>
+        <div class="results__grid"></div>
       </div>
     </main>
     <footer class="footer">
-      <div class="footer__heading">© 2019 Тинькофф Прокат</div>
+      <div class="footer__heading">
+        © <current-year>2010</current-year> Тинькофф Прокат
+      </div>
     </footer>
+
+    <script src="src/index.js" type="module"></script>
   </body>
 </html>
