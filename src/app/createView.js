@@ -8,6 +8,9 @@ export const createView = () => {
   const resultsContainer = document.querySelector('.results__grid');
   const resultsHeading = document.querySelector('.results__heading');
 
+  // Tags list
+  const searchTags = document.querySelector('.search__tags');
+
   // Form
   const searchForm = document.querySelector('.search__form');
   const searchInput = document.querySelector('.search__input');
@@ -29,6 +32,22 @@ export const createView = () => {
 
     clearNode(resultsContainer);
     resultsContainer.appendChild(list);
+  };
+
+  const renderSearchList = (terms) => {
+    const list = document.createDocumentFragment();
+
+    terms.forEach((movie) => {
+      const tag = document.createElement('a');
+      tag.classList.add('search__tag');
+      tag.href = `/?search=${movie}`;
+      tag.textContent = movie;
+
+      list.appendChild(tag);
+    });
+
+    clearNode(searchTags);
+    searchTags.appendChild(list);
   };
 
   const renderCount = (count) => {
@@ -56,6 +75,7 @@ export const createView = () => {
     renderList,
     renderCount,
     renderError,
+    renderSearchList,
     onSearchSubmit,
   };
 };

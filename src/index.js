@@ -15,6 +15,10 @@ const viewModel = createViewModel(model);
 viewModel.bindCount(view.renderCount);
 viewModel.bindError(view.renderError);
 viewModel.bindResults(view.renderList);
+viewModel.bindSearches(view.renderSearchList);
 
 // View -> ViewModel
 view.onSearchSubmit(viewModel.handleSearchSubmit);
+
+// Init app
+viewModel.init();
