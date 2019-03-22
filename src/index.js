@@ -4,7 +4,9 @@ import { mapMovie } from './helpers/mapMovie.js';
 import './components/currentYear.js';
 import './components/movieCard.js';
 
-const movieTemplate = document.querySelector('#movie');
+const resultsContainer = document.querySelector('.results__grid');
+const form = document.querySelector('.search__form');
+const input = document.querySelector('.search__input');
 
 const render = (movieData) => {
   // Используем компонент
@@ -19,10 +21,14 @@ const render = (movieData) => {
   return movie;
 };
 
-const resultsContainer = document.querySelector('.results__grid');
+const search = async (searchTerm) => {
+  while (resultsContainer.firstChild) {
+    resultsContainer.removeChild(resultsContainer.firstChild);
+  }
 
-const main = async () => {
-  const { Search } = await fetch('./src/data.json').then((r) => r.json());
+  const { Search } = await fetch(
+    `http://www.omdbapi.com/?apikey=7ea4aa35&type=movie&s=${searchTerm}`
+  ).then((r) => r.json());
   const movies = Search.map((result) => render(mapMovie(result)));
 
   const fragment = document.createDocumentFragment();
@@ -31,4 +37,11 @@ const main = async () => {
   resultsContainer.appendChild(fragment);
 };
 
-main();
+const subscribeToSubmit = () => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    search(input.value);
+  });
+};
+
+subscribeToSubmit();
