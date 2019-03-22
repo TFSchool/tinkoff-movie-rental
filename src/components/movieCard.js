@@ -55,6 +55,14 @@ movieTemplate.innerHTML = `
     opacity: 1;
   }
   
+  .movie--no-image .movie-description {
+    opacity: 1;
+  }
+  
+  .movie--no-image .movie-image {
+    display: none;
+  }
+  
   .movie-rating {
     color: #fff;
   }
@@ -73,7 +81,7 @@ movieTemplate.innerHTML = `
   }
   </style>
 
-  <article class="movie">
+  <article class="movie movie--no-image">
     <a href="" class="movie-link">
       <img class="movie-image" src="" alt="poster" />
       <div class="movie-description">
@@ -120,12 +128,21 @@ class MovieCard extends HTMLElement {
   attributeChangedCallback(param, oldValue, newValue) {
     switch (param) {
       case 'title':
-        return (this.shadowRoot.querySelector(
-          '.movie-title'
-        ).textContent = newValue);
+        this.shadowRoot.querySelector('.movie-title').textContent = newValue;
+        break;
 
       case 'poster':
-        return (this.shadowRoot.querySelector('.movie-image').src = newValue);
+        if (newValue === 'N/A') {
+          this.shadowRoot
+            .querySelector('.movie')
+            .classList.add('movie--no-image');
+        } else {
+          this.shadowRoot
+            .querySelector('.movie')
+            .classList.remove('movie--no-image');
+        }
+        this.shadowRoot.querySelector('.movie-image').src = newValue;
+        break;
 
       case 'link':
         return (this.shadowRoot.querySelector('.movie-link').href = newValue);
