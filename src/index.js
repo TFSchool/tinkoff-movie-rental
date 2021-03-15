@@ -7,9 +7,9 @@ const render = (movieData) => {
   const movie = movieTemplate.content.cloneNode(true);
 
   // Находим нужные элементы
-  const link = movie.querySelector('.movie-link');
+  const link = movie.querySelector('.movie__link');
   const title = movie.querySelector('.movie-title');
-  const poster = movie.querySelector('.movie-poster');
+  const poster = movie.querySelector('.movie-image');
   const year = movie.querySelector('.movie-year');
   const genre = movie.querySelector('.movie-genre');
   const rating = movie.querySelector('.movie-rating');
