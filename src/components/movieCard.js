@@ -97,6 +97,7 @@ movieTemplate.innerHTML = `
 `;
 
 const params = ['title', 'poster', 'link', 'year', 'genre', 'rating'];
+
 const mirror = (params, element) => {
   params.forEach((param) => {
     Object.defineProperty(element, param, {

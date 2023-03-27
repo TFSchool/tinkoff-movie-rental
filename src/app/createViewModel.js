@@ -8,14 +8,12 @@ export const createViewModel = (model) => {
   const update = (nextState) => {
     if (nextState.error) {
       console.error(nextState.error);
-      return (
-        errorListener && errorListener('Случилась ошибка. Проверьте консоль.')
-      );
+      return errorListener?.('Случилась ошибка. Проверьте консоль.');
     }
 
-    resultsListener && resultsListener(nextState.results);
-    countListener && countListener(nextState.count);
-    searchesListener && searchesListener(nextState.searches);
+    resultsListener?.(nextState.results);
+    countListener?.(nextState.count);
+    searchesListener?.(nextState.searches);
 
     state = nextState;
   };

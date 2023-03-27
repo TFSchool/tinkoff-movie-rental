@@ -1,11 +1,17 @@
 import { createStore } from '../helpers/createStore.js';
 import { mapMovie } from '../helpers/mapMovie.js';
+import {
+  setFilmInfo,
+  getFilmInfo,
+  setCurrentResult,
+  getCurrentResult,
+} from '../services/browserStorage.js';
 
 export const createModel = () =>
   createStore(
     {
-      count: 0,
-      results: [],
+      count: JSON.parse(getCurrentResult()).count,
+      results: JSON.parse(getCurrentResult()).results ?? [],
       error: false,
       searches: [
         'Star Wars',
@@ -27,16 +33,26 @@ export const createModel = () =>
         });
 
         try {
+          if (getFilmInfo(searchTerm)) {
+            return JSON.parse(getFilmInfo(searchTerm));
+          }
+
           const data = await fetch(
             `http://www.omdbapi.com/?type=movie&apikey=7ea4aa35&s=${searchTerm}`
           ).then((r) => r.json());
 
-          return data.Response === 'True'
-            ? {
-                count: data.totalResults,
-                results: data.Search.map(mapMovie),
-              }
-            : { error: data.Error };
+          const response =
+            data.Response === 'True'
+              ? {
+                  count: data.totalResults,
+                  results: data.Search.map(mapMovie),
+                }
+              : { error: data.Error };
+
+          setFilmInfo(searchTerm, JSON.stringify(response));
+          setCurrentResult(JSON.stringify(response));
+
+          return response;
         } catch (error) {
           return { error };
         }
