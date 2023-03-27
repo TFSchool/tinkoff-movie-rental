@@ -18,7 +18,6 @@ export const createView = () => {
   // Renderers
   const renderList = (results) => {
     const list = document.createDocumentFragment();
-    console.log({ results });
 
     results.forEach((movieData) => {
       const movie = document.createElement('movie-card');

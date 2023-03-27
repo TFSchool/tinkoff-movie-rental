@@ -5,15 +5,17 @@ import {
   getFilmInfo,
   setCurrentResult,
   getCurrentResult,
+  setSearches,
+  getSearches,
 } from '../services/browserStorage.js';
 
 export const createModel = () =>
   createStore(
     {
-      count: JSON.parse(getCurrentResult()).count,
-      results: JSON.parse(getCurrentResult()).results ?? [],
+      count: JSON.parse(getCurrentResult())?.count ?? 0,
+      results: JSON.parse(getCurrentResult())?.results ?? [],
       error: false,
-      searches: [
+      searches: JSON.parse(getSearches()) ?? [
         'Star Wars',
         'Kung Fury',
         'Back to the Future',
@@ -23,13 +25,17 @@ export const createModel = () =>
     },
     (store) => ({
       search: async (currentState, searchTerm) => {
+        const searches = [searchTerm].concat(
+          currentState.searches.filter((term) => term !== searchTerm)
+        );
+
+        setSearches(JSON.stringify(searches));
+
         store.setState({
           count: 0,
           results: [],
           error: false,
-          searches: [searchTerm].concat(
-            currentState.searches.filter((term) => term !== searchTerm)
-          ),
+          searches,
         });
 
         try {
@@ -58,8 +64,14 @@ export const createModel = () =>
         }
       },
       removeTag: (currentState, searchTerm) => {
+        const searches = currentState.searches.filter(
+          (term) => term !== searchTerm
+        );
+
+        setSearches(JSON.stringify(searches));
+
         return {
-          searches: currentState.searches.filter((term) => term !== searchTerm),
+          searches,
         };
       },
     })
