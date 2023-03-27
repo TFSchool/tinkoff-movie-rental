@@ -44,7 +44,9 @@ export const createModel = () =>
           }
 
           const data = await fetch(
-            `http://www.omdbapi.com/?type=movie&apikey=7ea4aa35&s=${searchTerm}`
+            `http://www.omdbapi.com/?type=movie&apikey=${
+              process.env.API_KEY
+            }&s=${searchTerm}`
           ).then((r) => r.json());
 
           const response =
